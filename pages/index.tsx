@@ -34,7 +34,7 @@ export default function Home() {
             <Input placeholder="Yassuo" />
           </FormControl>
 
-          <Button width="full" mt={4} type="submit">
+          <Button width="full" mt={4} colorScheme="teal" type="submit">
             Search
           </Button>
         </form>
