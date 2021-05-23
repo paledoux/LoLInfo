@@ -13,6 +13,8 @@ import {
 
 import Link from "next/link";
 
+import { TeamList } from "../../components/TeamList";
+
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { name } = query;
 
@@ -100,23 +102,17 @@ export default function Summoner({ data }) {
               <Text>{`${((kills + assists) / deaths).toFixed(2)} KDA`}</Text>
             </Flex>
 
-            <Flex>
-              <Flex direction="column" mr="5">
-                {match.participants
-                  .filter((par) => par.teamId == 100)
-                  .map((player) => {
-                    const { summonerName } = player;
-                    return <Text>{summonerName}</Text>;
-                  })}
-              </Flex>
-              <Flex direction="column">
-                {match.participants
-                  .filter((par) => par.teamId == 200)
-                  .map((player) => {
-                    const { summonerName } = player;
-                    return <Text>{summonerName}</Text>;
-                  })}
-              </Flex>
+            <Flex width="300px">
+              <TeamList
+                participants={match.participants.filter(
+                  (par) => par.teamId == 100
+                )}
+              />
+              <TeamList
+                participants={match.participants.filter(
+                  (par) => par.teamId == 200
+                )}
+              />
             </Flex>
           </Flex>
         );
